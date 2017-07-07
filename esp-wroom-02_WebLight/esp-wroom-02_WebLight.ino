@@ -31,15 +31,12 @@ void function() {
   static byte light_state = 0;
   int motion_state = digitalRead(Motion_Sensor); 
 
-  if (light_bulb == light_off) {
+  if (light_bulb == light_off)
     light_state = 0;
-  }
-  else if (light_bulb == light_on) {
+  else if (light_bulb == light_on)
     light_state = 1;
-  }
-  else if (light_bulb == light_motion) {
+  else if (light_bulb == light_motion)
     light_state = motion_state;
-  }
   
   digitalWrite(Light_Bulb, light_state);
 }
