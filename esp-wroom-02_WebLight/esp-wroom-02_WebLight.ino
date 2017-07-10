@@ -16,7 +16,7 @@ ESP8266WebServer server (80);
 
 static const char *htmldata = "<HTML><BODY style='font-size:80px;'>ESPWROOM02<br/>Light_Bulb<br/><br/><br/><a href=/?light=on>on</a><br/><a href=/?light=off>off</a><br/><a href=/?light=motion>motion</a><br/></BODY></HTML>\r\n";
                               
-void handleCommand() {
+void handleRoot() {
   String cmd = server.arg("light");
   if (cmd == "on")  
     light_bulb = light_on;
@@ -52,7 +52,7 @@ void setup() {
  
   WiFi.softAP(ssid, password);
   IPAddress ip = WiFi.softAPIP();
-  server.on("/", handleCommand);
+  server.on("/", handleRoot);
   server.begin();
 }
 
