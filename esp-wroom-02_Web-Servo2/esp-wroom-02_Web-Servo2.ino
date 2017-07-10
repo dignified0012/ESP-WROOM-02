@@ -9,7 +9,7 @@ Servo servo;
 Ticker ticker;
 
 const char *ssid = "ESP-WROOM-02";
-const char *password = "12345678";
+const char *password = "password";
 
 ESP8266WebServer server(80);
 
@@ -29,17 +29,9 @@ void ticker_func() {
   servo.write(servo_state);
 }
 
-String htmldata =
-"<HTML>\
-<BODY style='font-size:48px;'>\
-ESP_HTTPD_SERVO<br/><br/><br/>\
-<a href=/cmd?servo=0>0</a><br/>\
-<a href=/cmd?servo=90>90</a><br/>\
-<a href=/cmd?servo=180>180</a><br/>\
-</BODY>\
-</HTML>";
+String htmldata = "<HTML><BODY style='font-size:48px;'>ESP_HTTPD_SERVO<br/><br/><br/><a href=/cmd?servo=0>0</a><br/><a href=/cmd?servo=90>90</a><br/><a href=/cmd?servo=180>180</a><br/></BODY></HTML>";
 
-void handleCommand() {
+void handleRoot() {
   String cmd = server.arg("Servo");
   Serial.println("handleCommand() Servo=" + cmd);
   if (cmd == "0")  
@@ -64,12 +56,11 @@ void setup(){
   Serial.print("this AP : "); 
   Serial.println(ip);
  
-  server.on("/cmd", handleCommand);
+  server.on("/cmd", handleRoot);
   server.begin();
   Serial.println("HTTP server started");
 }
 
 void loop() {
   server.handleClient();
-  delay(1);
 }
