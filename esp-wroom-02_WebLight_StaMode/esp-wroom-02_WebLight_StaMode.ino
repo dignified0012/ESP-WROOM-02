@@ -54,12 +54,12 @@ void setup() {
   ticker.attach_ms(10, function);
   
   Serial.println("WiFi module setting... ");
-  WiFi.softAP("souda-BF-hajimeyou2", "yuui15624s");
+  WiFi.softAP("souda-BF-hajimeyou2", "password");
   Serial.print("IP address: ");
   Serial.println(WiFi.softAPIP());
   
   Serial.print("Connecting to ");
-  WiFi.begin("souda-BF-hajimeyou", "yuui15624s");
+  WiFi.begin("souda-BF-hajimeyou", "password");
   int retry_sum = 0;
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
